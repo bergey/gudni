@@ -1,4 +1,4 @@
-{ compiler ? "default", doBenchmark ? false }:
+{ compiler ? "default", doBenchmark ? true }:
 
 let
     nixpkgs =
