@@ -187,7 +187,10 @@ library
   -- Directories containing source files.
   hs-source-dirs:   src
   ghc-options:
-  ld-options:       -headerpad_max_install_names
+  if os(darwin)
+      ld-options:       -headerpad_max_install_names
+  else
+      ld-options: 
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
