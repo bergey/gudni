@@ -421,7 +421,7 @@ inline void popTop(ThresholdState *tS) {
 typedef struct ShapeState {
                 SHAPEBIT  shapeBits;                 // the number of shapes assigned to a bit in the shapeStack.
       SUBSTANCEID  shapeIndices[MAXSHAPE];     // a mapping from shape bit positions in the shapeStacks to shapeIndices in the tile.
-      PMEM SHAPESTACK shapeStack[SHAPESTACKSECTIONS]; // the current shape Stack. (Each bit represents the presence of a shape in the stack.)
+      SHAPESTACK shapeStack[SHAPESTACKSECTIONS]; // the current shape Stack. (Each bit represents the presence of a shape in the stack.)
 } ShapeState;
 
 typedef struct ParseState {
