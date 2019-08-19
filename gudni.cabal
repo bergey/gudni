@@ -272,8 +272,10 @@ executable project-demo
   main-is: ProjectDemo.hs
   default-language: Haskell2010
   ghc-options: -main-is ProjectDemo
-               -O3
+               -O2
                -threaded
+               -rtsopts
+               -with-rtsopts=-N
 
 executable plot-example
    -- other-modules:
