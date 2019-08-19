@@ -324,5 +324,6 @@ benchmark criterion
     build-depends: gudni
                  , base
                  , criterion
+                 , linear
     default-language:    Haskell2010
     type: exitcode-stdio-1.0
