@@ -1,3 +1,4 @@
+{-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE DefaultSignatures #-}
 {-# LANGUAGE GADTs            #-}
 {-# LANGUAGE LambdaCase       #-}
@@ -59,6 +60,9 @@ data OpenCurve s = OpenCurve
     , _terminator    :: (Point2 s)
     } deriving (Show, Eq, Ord)
 makeLenses ''OpenCurve
+
+instance (SimpleSpace s) => HasSpace (OpenCurve s) where
+    type SpaceOf (OpenCurve s) = s
 
 -- | The first point on the curve of an open curve or the terminator if it only has one point.
 outset :: Lens' (OpenCurve s) (Point2 s)
@@ -169,7 +173,7 @@ class CanProject t where
   projectWithSteps :: Int -> OpenCurve (SpaceOf t) -> t -> t
   projectWithSteps max_steps = projectWithStepsAccuracy max_steps Nothing
 
-  projectWithStepsAccuracy :: Int -> Maybe (SpaceOf t) -> OpenCurve (SpaceOf t) -> t -> t
+  projectWithStepsAccuracy :: (s ~ SpaceOf t) => Int -> Maybe s -> OpenCurve s -> t -> t
 
 instance (SpaceOf (OpenCurve s) ~ s, Floating s, RealFrac s, Ord s, Epsilon s) =>
     CanProject (OpenCurve s) where
